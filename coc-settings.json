@@ -1,0 +1,13 @@
+ {
+  "solargraph.formatting": true,
+  "solargraph.references": true,
+  "solargraph.definitions": true,
+  "solargraph.rename": true,
+  "solargraph.folding": true,
+  "solargraph.symbols": true,
+  "solargraph.diagnostics": true,
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": ""
+}
+
