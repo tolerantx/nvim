@@ -1,6 +1,6 @@
 # nvim
 
-## Installation
+## Installation (Mac)
 
 ```bash
 $ brew install nvim
@@ -9,6 +9,12 @@ $ git clone git@github.com:tolerantx/nvim.git
 $ brew install fzf
 $ brew install ripgrep
 $ gem install solargraph
+```
+
+### NVIM
+
+```
+: PlugInstall
 ```
 
 ### Install new fonts
