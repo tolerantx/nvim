@@ -45,7 +45,7 @@ command! Reload execute ":source $MYVIMRC"
 " NERDTree
 let g:webdevicons_enable_nerdtree = 1
 let g:webdevicons_enable_airline_statusline = 1
-nmap <C-b> :NERDTreeToggle<CR>
+nmap <leader>b :NERDTreeToggle<CR>
 nmap <leader>rr :NERDTreeFind<CR>
 
 " Copy and Paste
@@ -116,10 +116,10 @@ autocmd BufWritePre * %s/\s\+$//e
 
 " Copy current path file
 let @+ = expand("%")
-nmap <leader>pf :let @+ = expand("%")<CR>
+nmap <leader>pf :let @+ = expand("%")<CR> :echo 'File path copied!'<CR>
 
 " Copy current directory path
-nmap <leader>pd :let @+ = expand("%:h")<CR>
+nmap <leader>pd :let @+ = expand("%:h")<CR> :echo 'Directory path copied!'<CR>
 
 " Move lines
 nnoremap <silent><C-k> :m .-2<CR>==        " Move up
