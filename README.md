@@ -21,7 +21,7 @@ $ gem install solargraph
 
 ```bash
 $ brew tap homebrew/cask-fonts
-$ brew cask install font-bitstreamverasansmono-nerd-font
+$ brew cask install font-hack-nerd-font
 ```
 Set new font into iTerm configuration
-`iTerm2` -> `Preferences` -> `[Tab] Profiles` -> `[Tab Text]` -> `Font` and choose `BitstreamVeraSansMono...`
+`iTerm2` -> `Preferences` -> `[Tab] Profiles` -> `[Tab Text]` -> `Font` and choose `Hack Nerd Font`
