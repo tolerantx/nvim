@@ -10,7 +10,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   " File Explorer
   Plug 'preservim/nerdtree' |
     \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-    \ Plug 'ryanoasis/vim-devicons'
+    \ Plug 'ryanoasis/vim-devicons' |
+    \ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+  " Plug 'preservim/nerdtree'
+  " Plug 'ryanoasis/vim-devicons'
+  " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'sheerun/vim-polyglot'                         " Syntax support
@@ -28,5 +34,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'tpope/vim-surround'
   Plug 'ap/vim-css-color'
   Plug 'tpope/vim-commentary'
+  Plug 'mhinz/vim-startify'
 
 call plug#end()

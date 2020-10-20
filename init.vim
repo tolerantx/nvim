@@ -40,18 +40,17 @@ nmap <ESC><ESC> :noh<CR>
 " Open config file
 command! Config execute ":vsplit $MYVIMRC"
 command! Plugins execute ":vsplit ~/.config/nvim/vim-plug/plugins.vim"
-command! Reload execute ":source $MYVIMRC"
+command! Reload execute ":source $MYVIMRC" | execute ":echo 'Reloaded!'"
+command! Tmux execute ":vsplit ~/.tmux.conf"
 
 " NERDTree
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_enable_airline_statusline = 1
 nmap <leader>b :NERDTreeToggle<CR>
-nmap <leader>rr :NERDTreeFind<CR>
+nmap <leader>rr :NERDTreeFind<CR>zz
 
 " Copy and Paste
-vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
-vmap <C-x> d:call system("pbcopy", getreg("\""))<CR>
-nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+vmap <C-c> y:call system("pbcopy", getreg("\""))<CR> :echo 'Copied!'<CR>
+vmap <C-x> d:call system("pbcopy", getreg("\""))<CR> :echo 'Cut!'<CR>
+nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p :echo 'Pasted!'<CR>
 
 " Tabs
 nnoremap <C-t><C-t> :tabnew<CR> " <Option-t> new tab
@@ -121,6 +120,9 @@ nmap <leader>pf :let @+ = expand("%")<CR> :echo 'File path copied!'<CR>
 " Copy current directory path
 nmap <leader>pd :let @+ = expand("%:h")<CR> :echo 'Directory path copied!'<CR>
 
+" Copy current file name
+nmap <leader>fn :let @+ = expand("%:t")<CR> :echo 'File name copied!'<CR>
+
 " Move lines
 nnoremap <silent><C-k> :m .-2<CR>==        " Move up
 nnoremap <silent><C-j> :m .+1<CR>==        " Move down
@@ -129,72 +131,37 @@ inoremap <silent><C-j> <Esc>:m .+1<CR>
 vnoremap <silent><C-k> :m '<-2<CR>gv=gv
 vnoremap <silent><C-j> :m '>+1<CR>gv=gv
 
-" =================== coc.nvim =================================================
+" Explorer
+nmap <leader>e :CocCommand explorer<CR>
+nmap <leader>w :CocCommand explorer --preset floating<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+autocmd FileType coc-explorer map <buffer> i :set splitbelow<cr>
 
-" Give more space for displaying messages.
-set cmdheight=2
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+" Startify
+let g:startify_change_to_dir = 0
+autocmd FileType startify execute ":IndentLinesDisable"
+autocmd FileType coc-explorer execute ":IndentLinesDisable"
+let g:startify_lists = [
+      \ { 'type': 'files',     'header': ['   Files']            },
+      \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+      \ ]
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=auto
+let g:startify_custom_header = [
+  \ '   .__   __.  _______   ______   ____    ____  __  .___  ___.',
+  \ '   |  \ |  | |   ____| /  __  \  \   \  /   / |  | |   \/   |',
+  \ '   |   \|  | |  |__   |  |  |  |  \   \/   /  |  | |  \  /  |',
+  \ '   |  . `  | |   __|  |  |  |  |   \      /   |  | |  |\/|  |',
+  \ '   |  |\   | |  |____ |  `--   |    \    /    |  | |  |  |  |',
+  \ '   |__| \__| |_______| \______/      \__/     |__| |__|  |__|',
+  \ ]
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-let g:coc_global_extensions = ['coc-solargraph']
-
-" =================== END coc.nvim =============================================
+source $HOME/.config/nvim/vim-plug/nerdtree.conf.vim
+source $HOME/.config/nvim/vim-plug/coc.conf.vim

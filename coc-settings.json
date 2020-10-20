@@ -8,6 +8,14 @@
   "solargraph.diagnostics": true,
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
-  "diagnostic.infoSign": ""
+  "diagnostic.infoSign": "",
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.keyMappings": {
+    "<cr>": ["expandable?", "expandOrCollapse", "open"],
+    "s": "open:vsplit",
+    "i": "open:split"
+  }
 }
 
