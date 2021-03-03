@@ -27,7 +27,7 @@ set softtabstop=2
 set shiftwidth=2                " Tabs under smart indent
 set smarttab
 set expandtab
-set virtualedit=all
+set virtualedit=onemore         " all, block, insert, onemore
 set showmatch                   " Show matching brackets.
 
 " Go to Normal mode
