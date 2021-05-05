@@ -10,12 +10,17 @@
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "explorer.width": 30,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings.global": {
+    "<cr>": [
+      "expandable?",
+      ["expanded?", "collapse", "expand"],
+      "open"
+    ],
+    "v": "open:vsplit",
+    "x": "open:split"
+  },
+  "explorer.file.autoReveal": true,
   "explorer.icon.enableNerdfont": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.keyMappings": {
-    "<cr>": ["expandable?", "expandOrCollapse", "open"],
-    "s": "open:vsplit",
-    "i": "open:split"
-  }
+  "explorer.previewAction.onHover": false
 }
-

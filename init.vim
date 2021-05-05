@@ -30,9 +30,8 @@ set expandtab
 set virtualedit=onemore         " all, block, insert, onemore
 set showmatch                   " Show matching brackets.
 
-" Go to Normal mode
-imap ;; <ESC>
-vmap ;; <ESC>
+" This is required to use vim-textobj-user/vim-textobj-rubyblock
+runtime macros/matchit.vim
 
 " Reset search
 nmap <ESC><ESC> :noh<CR>
@@ -44,8 +43,8 @@ command! Reload execute ":source $MYVIMRC" | execute ":echo 'Reloaded!'"
 command! Tmux execute ":vsplit ~/.tmux.conf"
 
 " NERDTree
-nmap <leader>b :NERDTreeToggle<CR>
-nmap <leader>rr :NERDTreeFind<CR>zz
+" nmap <leader>b :NERDTreeToggle<CR>
+" nmap <leader>rr :NERDTreeFind<CR>zz
 
 " Copy and Paste
 vmap <C-c> y:call system("pbcopy", getreg("\""))<CR> :echo 'Copied!'<CR>
@@ -133,9 +132,8 @@ vnoremap <silent><C-j> :m '>+1<CR>gv=gv
 
 " Explorer
 nmap <leader>e :CocCommand explorer<CR>
-nmap <leader>w :CocCommand explorer --preset floating<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-autocmd FileType coc-explorer map <buffer> i :set splitbelow<cr>
+" autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+" autocmd FileType coc-explorer map <buffer> i :set splitbelow<cr>
 
 
 " Quickly insert an empty new line without entering insert mode

@@ -35,5 +35,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'ap/vim-css-color'
   Plug 'tpope/vim-commentary'
   Plug 'mhinz/vim-startify'
+  Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
 
 call plug#end()
