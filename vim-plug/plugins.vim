@@ -17,7 +17,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   " Plug 'ryanoasis/vim-devicons'
   " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'sheerun/vim-polyglot'                         " Syntax support
   Plug 'jiangmiao/auto-pairs'

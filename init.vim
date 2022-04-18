@@ -29,6 +29,8 @@ set smarttab
 set expandtab
 set virtualedit=onemore         " all, block, insert, onemore
 set showmatch                   " Show matching brackets.
+set clipboard=unnamed
+set foldmethod=manual
 
 " This is required to use vim-textobj-user/vim-textobj-rubyblock
 runtime macros/matchit.vim
@@ -42,14 +44,8 @@ command! Plugins execute ":vsplit ~/.config/nvim/vim-plug/plugins.vim"
 command! Reload execute ":source $MYVIMRC" | execute ":echo 'Reloaded!'"
 command! Tmux execute ":vsplit ~/.tmux.conf"
 
-" NERDTree
-" nmap <leader>b :NERDTreeToggle<CR>
-" nmap <leader>rr :NERDTreeFind<CR>zz
-
-" Copy and Paste
-vmap <C-c> y:call system("pbcopy", getreg("\""))<CR> :echo 'Copied!'<CR>
-vmap <C-x> d:call system("pbcopy", getreg("\""))<CR> :echo 'Cut!'<CR>
-nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p :echo 'Pasted!'<CR>
+nnoremap C "_C
+nnoremap c "_c
 
 " Tabs
 nnoremap <C-t><C-t> :tabnew<CR> " <Option-t> new tab
@@ -64,8 +60,8 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 
 " Rg (Search)
-nnoremap <C-S-f> :Rg<SPACE>
-inoremap <C-S-f> <Esc>:Rg<SPACE>
+nnoremap <C-F> :Rg<SPACE>
+inoremap <C-F> <Esc>:Rg<SPACE>
 nnoremap <leader>ff :Rg <C-R>=expand("<cword>")<CR><CR>
 
 " Move to splits
@@ -102,9 +98,6 @@ set termguicolors
 
 " Highlight line
 set cursorline
-" highlight CursorLine ctermbg=Black cterm=None
-" set fillchars+=vert:\|
-" hi! vertsplit guifg=fg guibg=bg
 
 " Color column
 set colorcolumn=80
@@ -132,13 +125,6 @@ vnoremap <silent><C-j> :m '>+1<CR>gv=gv
 
 " Explorer
 nmap <leader>e :CocCommand explorer<CR>
-" autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-" autocmd FileType coc-explorer map <buffer> i :set splitbelow<cr>
-
-
-" Quickly insert an empty new line without entering insert mode
-nnoremap <Leader>o o<Esc>
-nnoremap <Leader>O O<Esc>
 
 " Startify
 let g:startify_change_to_dir = 0
@@ -163,3 +149,11 @@ let g:startify_custom_header = [
 
 source $HOME/.config/nvim/vim-plug/nerdtree.conf.vim
 source $HOME/.config/nvim/vim-plug/coc.conf.vim
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Allow searching in hidden files
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
