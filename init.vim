@@ -5,7 +5,7 @@ let mapleader = "\<Space>"
 set nocompatible
 set mouse=a
 set number                      " Display line numbers beside buffer
-" set relativenumber
+set relativenumber
 set backspace=indent,eol,start  " Sane backspace behavior
 set splitbelow
 set splitright
@@ -46,6 +46,8 @@ command! Tmux execute ":vsplit ~/.tmux.conf"
 
 nnoremap C "_C
 nnoremap c "_c
+nnoremap S "_S
+nnoremap s "_s
 
 " Tabs
 nnoremap <C-t><C-t> :tabnew<CR> " <Option-t> new tab
@@ -147,7 +149,6 @@ let g:startify_custom_header = [
   \ '   |__| \__| |_______| \______/      \__/     |__| |__|  |__|',
   \ ]
 
-source $HOME/.config/nvim/vim-plug/nerdtree.conf.vim
 source $HOME/.config/nvim/vim-plug/coc.conf.vim
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile

@@ -7,16 +7,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
-  " File Explorer
-  Plug 'preservim/nerdtree' |
-    \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-    \ Plug 'ryanoasis/vim-devicons' |
-    \ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-  " Plug 'preservim/nerdtree'
-  " Plug 'ryanoasis/vim-devicons'
-  " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'sheerun/vim-polyglot'                         " Syntax support
   Plug 'jiangmiao/auto-pairs'
