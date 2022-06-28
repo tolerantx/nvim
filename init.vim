@@ -128,26 +128,26 @@ vnoremap <silent><C-j> :m '>+1<CR>gv=gv
 " Explorer
 nmap <leader>e :CocCommand explorer<CR>
 
-" Startify
-let g:startify_change_to_dir = 0
-autocmd FileType startify execute ":IndentLinesDisable"
-autocmd FileType coc-explorer execute ":IndentLinesDisable"
-let g:startify_lists = [
-      \ { 'type': 'files',     'header': ['   Files']            },
-      \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
-      \ { 'type': 'sessions',  'header': ['   Sessions']       },
-      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-      \ { 'type': 'commands',  'header': ['   Commands']       },
-      \ ]
+" " Startify
+" let g:startify_change_to_dir = 0
+" autocmd FileType startify execute ":IndentLinesDisable"
+" autocmd FileType coc-explorer execute ":IndentLinesDisable"
+" let g:startify_lists = [
+"       \ { 'type': 'files',     'header': ['   Files']            },
+"       \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+"       \ { 'type': 'sessions',  'header': ['   Sessions']       },
+"       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+"       \ { 'type': 'commands',  'header': ['   Commands']       },
+"       \ ]
 
-let g:startify_custom_header = [
-  \ '   .__   __.  _______   ______   ____    ____  __  .___  ___.',
-  \ '   |  \ |  | |   ____| /  __  \  \   \  /   / |  | |   \/   |',
-  \ '   |   \|  | |  |__   |  |  |  |  \   \/   /  |  | |  \  /  |',
-  \ '   |  . `  | |   __|  |  |  |  |   \      /   |  | |  |\/|  |',
-  \ '   |  |\   | |  |____ |  `--   |    \    /    |  | |  |  |  |',
-  \ '   |__| \__| |_______| \______/      \__/     |__| |__|  |__|',
-  \ ]
+" let g:startify_custom_header = [
+"   \ '   .__   __.  _______   ______   ____    ____  __  .___  ___.',
+"   \ '   |  \ |  | |   ____| /  __  \  \   \  /   / |  | |   \/   |',
+"   \ '   |   \|  | |  |__   |  |  |  |  \   \/   /  |  | |  \  /  |',
+"   \ '   |  . `  | |   __|  |  |  |  |   \      /   |  | |  |\/|  |',
+"   \ '   |  |\   | |  |____ |  `--   |    \    /    |  | |  |  |  |',
+"   \ '   |__| \__| |_______| \______/      \__/     |__| |__|  |__|',
+"   \ ]
 
 source $HOME/.config/nvim/vim-plug/coc.conf.vim
 
