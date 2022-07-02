@@ -35,51 +35,18 @@ set foldmethod=manual
 " This is required to use vim-textobj-user/vim-textobj-rubyblock
 runtime macros/matchit.vim
 
-" Reset search
-nmap <ESC><ESC> :noh<CR>
-
 " Open config file
 command! Config execute ":vsplit $MYVIMRC"
 command! Plugins execute ":vsplit ~/.config/nvim/vim-plug/plugins.vim"
 command! Reload execute ":source $MYVIMRC" | execute ":echo 'Reloaded!'"
 command! Tmux execute ":vsplit ~/.tmux.conf"
 
-nnoremap C "_C
-nnoremap c "_c
-nnoremap S "_S
-nnoremap s "_s
-
-" Tabs
-nnoremap <C-t><C-t> :tabnew<CR> " <Option-t> new tab
-vnoremap <C-t><C-t> <Esc>:tabnew<CR> " <Option-t> new tab
-inoremap <C-t><C-t> <Esc>:tabnew<CR> " <Option-t> new tab
-
-" Contro+p (fzf) (brew install fzf)
-nnoremap <silent> <C-p> :Files<CR>
-inoremap <silent> <C-p> <Esc>:Files<CR>
-
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
 
-" Rg (Search)
-nnoremap <C-F> :Rg<SPACE>
-inoremap <C-F> <Esc>:Rg<SPACE>
-nnoremap <leader>ff :Rg <C-R>=expand("<cword>")<CR><CR>
-
-" Move to splits
-map <C-S-Up> :wincmd k<CR>
-map <C-S-Down> :wincmd j<CR>
-map <C-S-Left> :wincmd h<CR>
-map <C-S-Right> :wincmd l<CR>
-
-" Save and close
-map <C-s> :w<CR> :echo "Saved!" <CR>
-imap <C-s> <ESC> :w<CR> :echo "Saved!" <CR>
-nmap <C-q> :q<CR>
-
 " Blamer.nvim
 let g:blamer_enabled = 1
-let g:blamer_delay = 250
+" let g:blamer_delay = 250
 let g:blamer_date_format = '%b %d, %Y %H:%M'
 let g:blamer_template = '<author> • <committer-time> • <summary>'
 let g:blamer_show_in_visual_modes = 0
@@ -91,12 +58,12 @@ let g:gitgutter_realtime = 0
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 10
+let g:airline_theme='angr'
 
 " Colorscheme
 colorscheme base16-default-dark
 let base16colorspace=256
 set termguicolors
-" colorscheme jellybeans
 
 " Highlight line
 set cursorline
@@ -117,38 +84,9 @@ nmap <leader>pd :let @+ = expand("%:h")<CR> :echo 'Directory path copied!'<CR>
 " Copy current file name
 nmap <leader>fn :let @+ = expand("%:t")<CR> :echo 'File name copied!'<CR>
 
-" Move lines
-nnoremap <silent><C-k> :m .-2<CR>==        " Move up
-nnoremap <silent><C-j> :m .+1<CR>==        " Move down
-inoremap <silent><C-k> <Esc>:m .-2<CR>
-inoremap <silent><C-j> <Esc>:m .+1<CR>
-vnoremap <silent><C-k> :m '<-2<CR>gv=gv
-vnoremap <silent><C-j> :m '>+1<CR>gv=gv
-
-" Explorer
-nmap <leader>e :CocCommand explorer<CR>
-
-" " Startify
-" let g:startify_change_to_dir = 0
-" autocmd FileType startify execute ":IndentLinesDisable"
-" autocmd FileType coc-explorer execute ":IndentLinesDisable"
-" let g:startify_lists = [
-"       \ { 'type': 'files',     'header': ['   Files']            },
-"       \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
-"       \ { 'type': 'sessions',  'header': ['   Sessions']       },
-"       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-"       \ { 'type': 'commands',  'header': ['   Commands']       },
-"       \ ]
-
-" let g:startify_custom_header = [
-"   \ '   .__   __.  _______   ______   ____    ____  __  .___  ___.',
-"   \ '   |  \ |  | |   ____| /  __  \  \   \  /   / |  | |   \/   |',
-"   \ '   |   \|  | |  |__   |  |  |  |  \   \/   /  |  | |  \  /  |',
-"   \ '   |  . `  | |   __|  |  |  |  |   \      /   |  | |  |\/|  |',
-"   \ '   |  |\   | |  |____ |  `--   |    \    /    |  | |  |  |  |',
-"   \ '   |__| \__| |_______| \______/      \__/     |__| |__|  |__|',
-"   \ ]
-
+" Settings
+source $HOME/.config/nvim/settings/mappers.vim
+source $HOME/.config/nvim/settings/tabs.vim
 source $HOME/.config/nvim/vim-plug/coc.conf.vim
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -158,3 +96,4 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
+
