@@ -22,7 +22,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'terryma/vim-multiple-cursors'
   Plug 'tpope/vim-surround'                           " surroundings: parentheses, brackets, quotes, XML tags, and more
   Plug 'ap/vim-css-color'                             " multi-syntax context-sensitive color name highlighter
-  Plug 'tpope/vim-commentary'                         " Comment lines
+  " Plug 'tpope/vim-commentary'                         " Comment lines
+  Plug 'numToStr/Comment.nvim'                        " Comment code
   Plug 'kana/vim-textobj-user'                        " Required by nelstrom/vim-textobj-user
   Plug 'nelstrom/vim-textobj-rubyblock'               " Select ruby blocks
+
+  Plug 'kdheepak/lazygit.nvim'
 call plug#end()

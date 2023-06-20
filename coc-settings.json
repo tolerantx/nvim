@@ -1,5 +1,5 @@
  {
-  "solargraph.transport": "stdio",
+  // "solargraph.transport": "stdio",
   "solargraph.formatting": true,
   "solargraph.references": true,
   "solargraph.definitions": true,
